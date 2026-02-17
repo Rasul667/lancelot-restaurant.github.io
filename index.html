@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ланслот — меню</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__logo">L</div>
+        <div class="brand__text">
+          <div class="brand__title">Ланселот</div>
+          <div class="brand__subtitle">Меню доставки</div>
+        </div>
+      </div>
+
+      <div class="header__actions">
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="Поиск блюда..." />
+        </div>
+
+        <button id="cartBtn" class="cart-btn" aria-label="Корзина">
+          <span class="cart-btn__icon">🧺</span>
+          <span class="cart-btn__text">Корзина</span>
+      <a href="tel:+77070572292" class="quick-btn">
+  📞
+</a>
+
+<a href="https://wa.me/77070572292" target="_blank" class="quick-btn">
+  💬
+</a>
+
+<a href="https://2gis.kz/aktobe/search/Братьев%20Жубановых%20318" 
+   target="_blank" 
+   class="quick-btn">
+  📍
+</a>
+
+          <span id="cartCount" class="cart-btn__count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Tabs -->
+  <nav class="tabs">
+    <div class="container tabs__inner" id="tabs"></div>
+  </nav>
+
+  <!-- Main -->
+  <main class="container main">
+    <section class="hero">
+      <div class="hero__card">
+        <div class="hero__title">Закажи вкусно — быстро</div>
+        <div class="hero__text">
+          Выбирай блюда, добавляй в корзину и оформляй заказ. Мы доставим его в кратчайшие сроки!
+        </div>
+      </div>
+      <div class="hero__decor"></div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <h2 id="sectionTitle">Салаты</h2>
+        <div class="section__hint" id="sectionHint">Выбери блюда и добавь в корзину</div>
+      </div>
+
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer__overlay" id="drawerOverlay"></div>
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <div class="drawer__title">Корзина</div>
+        <button id="closeCart" class="icon-btn">✕</button>
+      </div>
+
+      <div id="cartList" class="cart-list"></div>
+
+      <div class="drawer__footer">
+        <div class="total">
+          <div class="total__label">Итого:</div>
+          <div id="cartTotal" class="total__value">0 тг</div>
+        </div>
+        <button id="checkoutBtn" class="btn btn--primary">Оформить заказ</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal__overlay" id="modalOverlay"></div>
+    <div class="modal__card">
+      <div class="modal__header">
+        <div class="modal__title">Оформление заказа</div>
+        <button id="closeModal" class="icon-btn">✕</button>
+      </div>
+
+      <form id="checkoutForm" class="form">
+        <label class="field">
+          <span>Адрес (улица, дом, кв.)</span>
+          <input id="addr" type="text" required placeholder="Напр.: Абая 10, кв 12">
+        </label>
+
+        <label class="field">
+          <span>Телефон получателя</span>
+          <input id="phone" type="tel" required placeholder="+7 777 123 45 67">
+        </label>
+
+        <div class="field">
+          <span>Оплата</span>
+          <div class="pay">
+            <label class="pay__option">
+              <input type="radio" name="pay" value="cash" checked>
+              <span>Наличными</span>
+            </label>
+            <label class="pay__option">
+              <input type="radio" name="pay" value="card">
+              <span>Картой (фейк)</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="cardFields" class="card-fields hidden">
+          <label class="field">
+            <span>Номер карты</span>
+            <input id="cardNumber" type="text" placeholder="4444 4444 4444 4444">
+          </label>
+          <div class="row">
+            <label class="field">
+              <span>MM/YY</span>
+              <input id="cardExp" type="text" placeholder="12/28">
+            </label>
+            <label class="field">
+              <span>CVC</span>
+              <input id="cardCvc" type="text" placeholder="123">
+            </label>
+          </div>
+        </div>
+
+        <div class="form__summary">
+          <div class="summary__row">
+            <span>Итого</span>
+            <strong id="modalTotal">0 тг</strong>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--full" type="submit">Подтвердить заказ</button>
+
+        <div id="successBox" class="success hidden">
+          ✅ Заказ принят! (демо)  
+          <div class="success__small">Сейчас это просто имитация, без реальной оплаты.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- ===== Контакты ===== -->
+<section class="container section">
+  <div class="section__header">
+    <h2>Контакты</h2>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-title">📍 Адрес</div>
+      <div class="info-text">
+        Ул. Братьев Жубановых, 318
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-title">🕒 Время работы</div>
+      <div class="info-text">
+        Ежедневно 11:00 — 01:00
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-title">📞 Наш профиль</div>
+      <div class="info-text">
+      </div>
+      <div style="margin-top:10px;">
+        <a class="btn btn--ghost"
+           href="https://www.instagram.com/lancelot.restaurant/"
+           target="_blank">
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы ===== -->
+<section class="container section">
+  <div class="section__header">
+    <h2>Отзывы</h2>
+    <button class="btn btn--primary" id="openReviewBtn">
+      Оставить отзыв
+    </button>
+  </div>
+
+  <div id="reviewsList" class="reviews__list"></div>
+</section>
+<!-- Модалка отзывов -->
+<div id="reviewModal" class="modal" aria-hidden="true">
+  <div class="modal__overlay" id="reviewOverlay"></div>
+  <div class="modal__card">
+    <div class="modal__header">
+      <div class="modal__title">Оставить отзыв</div>
+      <button id="closeReviewBtn" class="icon-btn">✕</button>
+    </div>
+
+    <form id="reviewForm" class="form">
+      <label class="field">
+        <span>Имя</span>
+        <input id="reviewName" type="text" required>
+      </label>
+
+      <label class="field">
+        <span>Текст отзыва</span>
+        <textarea id="reviewText" required></textarea>
+      </label>
+
+      <button class="btn btn--primary btn--full" type="submit">
+        Отправить
+      </button>
+    </form>
+  </div>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
